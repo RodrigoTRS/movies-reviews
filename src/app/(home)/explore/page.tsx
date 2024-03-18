@@ -1,9 +1,9 @@
 import { fetchGenres } from "@/app/lib/actions/fetch-genre";
 import { fetchTitles } from "@/app/lib/actions/fetch-titles";
 import { Genre } from "@/app/lib/entities/Genre";
-import { Title } from "@/app/lib/entities/Title";
+import { ShortTitle } from "@/app/lib/entities/ShortTitle";
 import { fakeGenres } from "@/app/lib/mocked-data/fake-genres";
-import { fakeTitles } from "@/app/lib/mocked-data/fake-titles";
+import { fakeShortTitles } from "@/app/lib/mocked-data/fake-short-titles";
 import { GenresSelector } from "@/components/genres-selector";
 import { Pagination } from "@/components/pagination";
 import { TitlesGrid } from "@/components/title-grid";
@@ -25,9 +25,10 @@ export default async function Explore({ searchParams }: ExplorePageParams) {
     const currentPage = Number(searchParams?.page) || 1;
 
     // const genres = await fetchGenres()
-    // const titles = await fetchTitles({page: currentPage})
+    const genres = fakeGenres
 
-    const titles = fakeTitles
+    // const { titles, Ttotal_pages } = await fetchTitles({page: currentPage})
+    const { titles, total_pages } = fakeShortTitles
 
     return (
         <div className="w-full flex flex-col py-12 gap-8">
@@ -51,19 +52,17 @@ export default async function Explore({ searchParams }: ExplorePageParams) {
 
                 <section className="flex flex-col gap-2">
                     <h2 className="text-muted-foreground">Genres</h2>
-                    <GenresSelector genres={fakeGenres} />
+                    <GenresSelector genres={genres} />
                 </section>
 
                 <section className="flex flex-col gap-2">
                     <h2 className="text-muted-foreground">Titles</h2>
                     <TitlesGrid
-                        titles={titles.titles}
+                        titles={titles}
                     />
                     <Pagination
                         currentPage={currentPage}
-                        totalPages={titles.total_pages}
-                        totalResults={titles.total_results}
-                        limit={titles.limit}
+                        totalPages={total_pages}
                     />
                 </section>
             </main>

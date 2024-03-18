@@ -1,4 +1,4 @@
-export interface Title {
+export interface ShortTitle {
     id: number,
     title: string,
     year: number,
@@ -8,7 +8,7 @@ export interface Title {
     type: string
 }
 
-export const TitleTypeMapper = [
+export const ShortTitleTypeMapper = [
     {
         type: "movie",
         map: "Movie"

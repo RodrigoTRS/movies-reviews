@@ -5,20 +5,16 @@ import { Button } from "./ui/button"
 
 interface PaginationProps {
     currentPage: number,
-    totalResults: number,
     totalPages: number,
-    limit: number
 }
 
 export function Pagination(
-    { currentPage, totalResults, totalPages, limit }: PaginationProps
+    { currentPage, totalPages}: PaginationProps
 ) {
     const router = useRouter()
 
     const paginationArray = generatePaginationArray(currentPage, totalPages)
     
-    const isLastPage = currentPage === totalPages
-
     function handleChangePage(page: number) {
         router.push(`explore?page=${page}`)
     }

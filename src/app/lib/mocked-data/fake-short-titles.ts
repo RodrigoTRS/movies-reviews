@@ -1,4 +1,4 @@
-export const fakeTitles = {
+export const fakeShortTitles = {
     titles: [
       {
         id: 3191838,

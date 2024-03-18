@@ -1,21 +1,24 @@
-import { Title, TitleTypeMapper } from "@/app/lib/entities/Title"
+"use client"
+
+import { ShortTitle, ShortTitleTypeMapper } from "@/app/lib/entities/ShortTitle"
 import { Badge } from "./ui/badge"
 import { capitalizeString } from "@/utils/capitalize-string"
 import { Calendar } from "lucide-react"
 import { Button } from "./ui/button"
+import { useRouter } from "next/navigation"
 
 interface TitlesGridProps {
-    titles: Title[],
+    titles: ShortTitle[],
 }
 
 export function TitlesGrid({ titles }: TitlesGridProps) {
-
+    const router = useRouter()
 
     return (
         <div className="grid grid-cols-3 gap-8">
             {titles.map((title) => {
 
-                const type = TitleTypeMapper.find((mapper) => {
+                const type = ShortTitleTypeMapper.find((mapper) => {
                     return mapper.type === title.type
                 })
 
@@ -33,7 +36,9 @@ export function TitlesGrid({ titles }: TitlesGridProps) {
                             </div>
                         </div>
 
-                        <Button variant="outline">
+                        <Button variant="outline"
+                            onClick={() => router.push(`explore/${title.id}`)}
+                        >
                             Show more
                         </Button>
                     </div>
