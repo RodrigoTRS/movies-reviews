@@ -1,10 +1,10 @@
 "use client"
 
 import { ShortTitle, ShortTitleTypeMapper } from "@/app/lib/entities/ShortTitle"
-import { Badge } from "./ui/badge"
+import { Badge } from "../ui/badge"
 import { capitalizeString } from "@/utils/capitalize-string"
 import { Calendar } from "lucide-react"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { useRouter } from "next/navigation"
 
 interface TitlesGridProps {

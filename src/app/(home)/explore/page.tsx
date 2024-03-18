@@ -4,30 +4,34 @@ import { Genre } from "@/app/lib/entities/Genre";
 import { ShortTitle } from "@/app/lib/entities/ShortTitle";
 import { fakeGenres } from "@/app/lib/mocked-data/fake-genres";
 import { fakeShortTitles } from "@/app/lib/mocked-data/fake-short-titles";
-import { GenresSelector } from "@/components/genres-selector";
+import { GenresSelector } from "@/components/explore/genres-selector";
+import { Search } from "@/components/explore/search";
+import { TitlesGrid } from "@/components/explore/title-grid";
 import { Pagination } from "@/components/pagination";
-import { TitlesGrid } from "@/components/title-grid";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search as SearchIcon } from "lucide-react";
 
 interface ExplorePageParams {
     searchParams?: {
-      query?: string;
-      page?: string;
+        genre?: string;
+        query?: string;
+        page?: string;
     };
   }
   
 
 export default async function Explore({ searchParams }: ExplorePageParams) {
 
-    const query = searchParams?.query || '';
+    const query = searchParams?.query || "";
+    const filteredGenre = Number(searchParams?.genre);
     const currentPage = Number(searchParams?.page) || 1;
 
     // const genres = await fetchGenres()
     const genres = fakeGenres
 
-    // const { titles, Ttotal_pages } = await fetchTitles({page: currentPage})
+    // const { titles, total_pages } = await fetchTitles({page: currentPage, genres: filteredGenre})
     const { titles, total_pages } = fakeShortTitles
 
     return (
@@ -36,23 +40,18 @@ export default async function Explore({ searchParams }: ExplorePageParams) {
             <header className="w-full flex item-center justify-between">
 
                 <div className="flex gap-4 items-center">
-                    <Search className="text-primary" size={32} />
+                    <SearchIcon className="text-primary" size={32} />
                     <h1 className="text-2xl">Explore</h1>
                 </div>
 
-                <div className="flex gap-2 items-center">
-                    <Input placeholder="Search for a movie..." className="rounded-lg" />
-                    <Button size="default" variant="secondary" className="rounded-lg">
-                        Search
-                    </Button>
-                </div>
+                <Search />
             </header>
 
             <main className="flex flex-col gap-12">
 
                 <section className="flex flex-col gap-2">
                     <h2 className="text-muted-foreground">Genres</h2>
-                    <GenresSelector genres={genres} />
+                    <GenresSelector genres={genres} filteredGenre={filteredGenre} />
                 </section>
 
                 <section className="flex flex-col gap-2">

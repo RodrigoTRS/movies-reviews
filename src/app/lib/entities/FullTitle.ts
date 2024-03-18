@@ -6,7 +6,7 @@ export interface FullTitle {
     type: string,
     runtime_minutes: number,
     year: number,
-    end_year: number,
+    end_year: number | null,
     release_date: string,
     imdb_id: string,
     tmdb_id: number,
@@ -23,6 +23,6 @@ export interface FullTitle {
     networks: number[],
     network_names: string[],
     relevance_percentile: number,
-    trailer?: string,
-    trailer_thumbnail?: string
+    trailer: string | null,
+    trailer_thumbnail: string | null
 }

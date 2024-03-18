@@ -10,7 +10,7 @@ export function Sidebar() {
                 <span className="text-bold text-lg">Movies Reviews</span>
                 <NavLinks />
             </div>
-            <Link href="/login" className="flex gap-4 w-full">
+            <Link href="/login" className="flex gap-4">
                 Login
                 <LogIn className="text-primary"/>
             </Link>
