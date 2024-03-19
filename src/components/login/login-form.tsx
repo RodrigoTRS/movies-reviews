@@ -1,5 +1,6 @@
 "use client"
 
+import { authenticate } from "@/app/lib/actions/authenticate";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,24 +17,29 @@ type LoginFormData = z.infer<typeof loginFormSchema>
 
 export function LoginForm() {
 
-    const { register, handleSubmit } = useForm<LoginFormData>({
+    const { register, handleSubmit, reset } = useForm<LoginFormData>({
         resolver: zodResolver(loginFormSchema)
     })
 
-    
+    async function handleLogin(data: LoginFormData) {
+        await authenticate({ credentials: data })
+        reset()
+    }
 
     return (
-        <form className="w-full max-w-[360px]">
-            <Card className="flex flex-col p-8 gap-2">
+        <form className="w-full max-w-[360px]" onSubmit={handleSubmit(handleLogin)}>
+            <Card className="flex flex-col p-8 gap-2 bg-card">
                 <Input
                     type="email"
                     placeholder="E-mail"
                     {...register("email")}
+                    className="bg-slate-900"
                 />
                 <Input
                     type="password"
                     placeholder="Password"
                     {...register("password")}
+                    className="bg-slate-900"
                 />
                 <Button>
                     Login
