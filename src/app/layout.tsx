@@ -7,7 +7,7 @@ const font = Nunito({ subsets: ["latin"], weight: ["300", "500", "700"] });
 export const metadata: Metadata = {
   title: {
     template: "%s | Ignite Movies",
-    default: "Início | Ignite Movies"
+    default: "Ignite Movies"
   },
   description: "Movie's Reviews Plataform.",
 };

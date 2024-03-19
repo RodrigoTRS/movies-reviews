@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn, LogOut, Video } from "lucide-react";
 import { Button } from "./ui/button";
 import { auth, signOut } from "../../auth";
 import { NavLink } from "./nav-link";
@@ -18,10 +18,13 @@ export async function Sidebar() {
     const links = session ? allNavLInks : allNavLInks.filter((item) => !item.authRoute)
 
     return (
-        <aside className="fixed w-[240px] h-[calc(100vh-40px)] rounded-2xl flex flex-col items-center justify-between px-12 py-8 bg-slate-800">
-            <div className="flex flex-col w-full gap-16">
-                <span className="text-bold text-lg">Movies Reviews</span>
-                <div className="">
+        <aside className="fixed w-[270px] h-[calc(100vh-40px)] rounded-2xl flex flex-col items-center justify-between p-8 bg-slate-800">
+            <div className="flex flex-col w-full gap-16 items-center">
+                <span className="text-bold text-lg flex items-center gap-2">
+                    <Video />
+                    Movies Reviews
+                </span>
+                <div className=" flex flex-col gap-2 w-full">
                 {links.map((link, index) => {
                     return (
                         <NavLink

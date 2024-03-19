@@ -14,9 +14,9 @@ export function NavLink({ url, text }: NavLinkProps) {
     const pathname = usePathname();
 
     return (
-        <Link href={url} className={clsx("font-medium text-muted-foreground flex gap-4",
+        <Link href={url} className={clsx("font-medium text-muted-foreground flex gap-4 bg-slate-900 py-2 px-4 rounded-lg",
         {
-            "text-white font-bold": pathname === url
+            "text-white font-bold border-l-2 pl-3.5 border-blue-600": pathname === url
         })}>
             {text}
         </Link>
