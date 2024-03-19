@@ -1,19 +1,24 @@
-import { signIn } from "../../../../auth";
+"use server"
 
-interface AuthenticateRequst {
-  credentials: {
-    email: string,
-    password: string,
-  }
-}
+import { AuthError } from "next-auth";
+import { signIn } from "../../../../auth";
+import { redirect } from 'next/navigation';
  
 export async function authenticate(
-{ credentials }: AuthenticateRequst
+  prevState: string | undefined,
+  formData: FormData,
 ) {
   try {
-    await signIn('credentials', credentials);
+    await signIn('credentials', formData);
   } catch (error) {
-    console.error(error)
-    throw new Error("Invalid credentials");
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
   }
 }
