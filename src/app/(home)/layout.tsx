@@ -13,8 +13,10 @@ export default function RootLayout({
   return (
     <div className="flex px-5 py-5">
         <Sidebar />
-        <div className="w-[calc(100vw-344px)] ml-[304px] flex flex-col">
+        <div className="w-[calc(100vw-344px)] ml-[274px] flex flex-col">
+          <div className="w-full max-w-[1120px] mx-auto">
             {children}
+          </div>
         </div>
     </div>
   );

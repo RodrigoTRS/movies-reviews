@@ -4,8 +4,8 @@ interface BackdropProps {
 
 export function Backdrop({ url }: BackdropProps) {
     return (
-        <div className="absolute z-[-1] mt-16">
-            <div className="absolute w-[calc(100vw-344px)] flex bg-cover bg-center rounded-3xl"
+        <div className="absolute z-[-1] mt-16 mx-auto">
+            <div className="absolute w-[calc(100vw-344px)] max-w-[1120px] flex bg-cover bg-center rounded-3xl"
                 style={{ 
                     backgroundImage: `url(${url})`,
                     opacity: 0.2, 
