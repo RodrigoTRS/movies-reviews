@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Sidebar } from "../../components/sidebar";
 
 export const metadata: Metadata = {
-  title: "Início | Ignite Movies",
+  title: "Início",
 };
 
 export default function RootLayout({

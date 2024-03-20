@@ -4,13 +4,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const createUserSchema = z.object({
-  email: z.string(),
+  username: z.string(),
+  email: z.string().email(),
   password: z.string()
 })
 
 
 export async function POST(req: NextRequest) {
-  const { email, password } = createUserSchema.parse(await req.json())
+  const request = await req.json()
+  const { username, email, password } = createUserSchema.parse(request.data)
+
+
   try {
 
     const user = await prisma.user.findFirst({ where: { email }})
@@ -21,12 +25,13 @@ export async function POST(req: NextRequest) {
 
     await prisma.user.create({
       data: {
+        username,
         email,
         password: await hashPassword(password)
       }
     })
 
-    return NextResponse.json({ message: "User created" }, { status: 201 });
+    return NextResponse.json({ status: 201 });
   } catch (err) {
     console.error(err)
     return NextResponse.json({ message: "Internal server error."} , { status: 500 });

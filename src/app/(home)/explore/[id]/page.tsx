@@ -11,7 +11,9 @@ import Link from "next/link";
 import { auth } from "../../../../../auth";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getUserByEmail } from "@/app/lib/actions/get-user";
+import { getUserByEmail } from "@/app/lib/actions/get-user-by-email";
+import { redirect } from "next/navigation";
+import { RedirectToLoginButton } from "@/components/title-page/redirect-to-login-button";
 
 interface TitlePageParams {
     params: {
@@ -62,9 +64,7 @@ function MustBeLoggedIn() {
     return (
         <div className="flex items-center justify-between w-full">
             <span className="text-lg">You must be logged in to make a review.</span>
-            <Button variant="default" className="text-md flex gap-4">
-                Login <LogIn size={20}/>
-            </Button>
+            <RedirectToLoginButton />
         </div>
     )
 }

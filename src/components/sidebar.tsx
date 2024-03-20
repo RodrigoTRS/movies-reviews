@@ -3,6 +3,7 @@ import { LogIn, LogOut, Video } from "lucide-react";
 import { Button } from "./ui/button";
 import { auth, signOut } from "../../auth";
 import { NavLink } from "./nav-link";
+import { Logo } from "./logo";
 
 
 
@@ -20,10 +21,7 @@ export async function Sidebar() {
     return (
         <aside className="fixed w-[270px] h-[calc(100vh-40px)] rounded-2xl flex flex-col items-center justify-between p-8 bg-slate-800">
             <div className="flex flex-col w-full gap-16 items-center">
-                <span className="text-bold text-lg flex items-center gap-2">
-                    <Video size={32} strokeWidth={2} className="text-primary"/>
-                    Movies Reviews
-                </span>
+                <Logo />
                 <div className=" flex flex-col gap-2 w-full">
                 {links.map((link, index) => {
                     return (

@@ -15,17 +15,18 @@ datasource db {
 
 model User {
   id       String  @id @default(uuid())
-  email    String
+  username String @unique
+  email    String @unique
   password String
-  Review   Review?
+  reviews   Review[]
 
-  @@map("user")
+  @@map("users")
 }
 
 model Review {
   id         String    @id @default(uuid())
-  user_id    String    @unique
-  title_id   Int       @unique
+  user_id    String    
+  title_id   Int       
   rating     Int
   review     String
   created_at DateTime  @default(now())

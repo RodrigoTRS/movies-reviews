@@ -1,6 +1,5 @@
 "use server"
 
-import { backend } from "@/lib/axios";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 

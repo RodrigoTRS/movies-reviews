@@ -13,7 +13,6 @@ export default async function Profile() {
                   <User className="text-primary" size={32} />
                   <h1 className="text-2xl">Profile</h1>
                 </header>
-        
             </div>
         )
     } else {

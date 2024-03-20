@@ -1,3 +1,4 @@
+import { getUserByID } from "@/app/lib/actions/get-user-by-id"
 import { Review } from "@prisma/client"
 import clsx from "clsx"
 import { Star } from "lucide-react"
@@ -6,15 +7,19 @@ interface ReviewProps {
     review: Review
 }
 
-export function ReviewCard({ review }: ReviewProps) {
+export async function ReviewCard({ review }: ReviewProps) {
     const ratings = [1, 2, 3, 4, 5]
+    const user = await getUserByID({ id: review.user_id})
 
     return (
         <div 
             className="bg-slate-700 p-8 flex flex-col gap-4 rounded-lg border"
         >
             <header className="flex items-center justify-between">
-                <h3 className="text-lg font-bold">User name</h3>
+                <div className="text-sm">
+                    <span className="text-sm text-muted-foreground">Username</span>
+                    <h3 className="text-xl font-bold">{user?.username}</h3>
+                </div>
                 <div className="flex gap-2">
                     {ratings.map((_, index) => {
                         return (
@@ -26,7 +31,7 @@ export function ReviewCard({ review }: ReviewProps) {
                     })}
                 </div>
             </header>
-            <p className="text-md text-muted-foreground">{review.review}</p>
+            <p className="text-md">{review.review}</p>
         </div>
     )
 }
