@@ -16,6 +16,6 @@ export async function fetchGenres() {
         return genres
     } catch (error) {
       console.error(error);
-      throw new Error('Failed to fetch categories.');
+      throw new Error('Failed to fetch genres.');
     }
 }

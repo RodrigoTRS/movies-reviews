@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form"
 import clsx from "clsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { backend } from "@/lib/axios";
 import { createReview } from "@/app/lib/actions/create-review";
 
 const reviewFormSchema = z.object({
@@ -18,10 +17,11 @@ const reviewFormSchema = z.object({
 type ReviewFormData = z.infer<typeof reviewFormSchema>
 
 interface ReviewFormProps {
-    titleId: number
+    titleId: number,
+    userId: string
 }
 
-export function ReviewForm({ titleId }: ReviewFormProps) {
+export function ReviewForm({ titleId, userId }: ReviewFormProps) {
     const [rating, setRating] = useState<number>(0)
 
     const isRatingFilled = rating > 0
@@ -31,18 +31,22 @@ export function ReviewForm({ titleId }: ReviewFormProps) {
     })
 
     async function handleReviewSubmit(data: ReviewFormData) {
-        const formData = { titleId, rating, ...data}
-        await createReview(formData)
-        setRating(0)
-        reset()
+
+        const formData = { userId, titleId, rating, ...data}
+        try {
+            console.log(data)
+            await createReview(formData)
+            setRating(0)
+            reset()
+        } catch(err) {
+            console.error(err)
+        }
     }
 
     const ratingScale = [1, 2, 3, 4, 5]
 
     return (
-        <form onSubmit={handleSubmit(handleReviewSubmit)}
-            className="flex flex-col bg-slate-800 p-8 gap-4 rounded-lg"
-        >
+        <form onSubmit={handleSubmit(handleReviewSubmit)} className="flex flex-col gap-4">
             <div className="flex justify-between items-center">
                 <span className="text-xl font-bold">Review this film</span>
                 <div className="flex gap">

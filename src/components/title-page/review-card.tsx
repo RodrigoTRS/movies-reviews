@@ -1,4 +1,4 @@
-import { Review } from "@/app/lib/entities/Review"
+import { Review } from "@prisma/client"
 import clsx from "clsx"
 import { Star } from "lucide-react"
 

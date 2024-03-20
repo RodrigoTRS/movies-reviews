@@ -21,7 +21,7 @@ export async function Sidebar() {
         <aside className="fixed w-[270px] h-[calc(100vh-40px)] rounded-2xl flex flex-col items-center justify-between p-8 bg-slate-800">
             <div className="flex flex-col w-full gap-16 items-center">
                 <span className="text-bold text-lg flex items-center gap-2">
-                    <Video />
+                    <Video size={32} strokeWidth={2} className="text-primary"/>
                     Movies Reviews
                 </span>
                 <div className=" flex flex-col gap-2 w-full">
