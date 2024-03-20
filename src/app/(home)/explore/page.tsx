@@ -1,16 +1,11 @@
 import { fetchGenres } from "@/app/lib/actions/fetch-genre";
 import { fetchTitles } from "@/app/lib/actions/fetch-titles";
-import { Genre } from "@/app/lib/entities/Genre";
-import { ShortTitle } from "@/app/lib/entities/ShortTitle";
 import { fakeGenres } from "@/app/lib/mocked-data/fake-genres";
 import { fakeShortTitles } from "@/app/lib/mocked-data/fake-short-titles";
 import { GenresSelector } from "@/components/explore/genres-selector";
 import { Search } from "@/components/explore/search";
 import { TitlesGrid } from "@/components/explore/title-grid";
 import { Pagination } from "@/components/pagination";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Search as SearchIcon } from "lucide-react";
 
 interface ExplorePageParams {

@@ -34,7 +34,7 @@ export function ReviewForm({ titleId, userId }: ReviewFormProps) {
 
         const formData = { userId, titleId, rating, ...data}
         try {
-            console.log(data)
+            console.log(formData)
             await createReview(formData)
             setRating(0)
             reset()
