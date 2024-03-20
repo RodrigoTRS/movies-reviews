@@ -1,19 +1,17 @@
-import { getTitle } from "@/app/lib/actions/get-title";
 import { fakeFullTitle } from "@/app/lib/mocked-data/fake-full-title";
 import { Backdrop } from "@/components/title-page/backdrop";
 import { TitleCard } from "@/components/title-page/title-card";
 import { FullTitle } from "@/app/lib/entities/FullTitle";
 import { ReviewForm } from "@/components/title-page/review-form";
-import { fetchReviewsById } from "@/app/lib/actions/fetch-reviews-by-title-id";
+import { fetchReviewsByTitleID } from "@/app/lib/actions/fetch-reviews-by-title-id";
 import { ReviewCard } from "@/components/title-page/review-card";
 import { ChevronLeft, LogIn } from "lucide-react";
 import Link from "next/link";
 import { auth } from "../../../../../auth";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { getUserByEmail } from "@/app/lib/actions/get-user-by-email";
-import { redirect } from "next/navigation";
 import { RedirectToLoginButton } from "@/components/title-page/redirect-to-login-button";
+import { getUserByID } from "@/app/lib/actions/get-user-by-id";
 
 interface TitlePageParams {
     params: {
@@ -23,13 +21,15 @@ interface TitlePageParams {
 
 export default async function TitlePage({ params }: TitlePageParams) {
     const id = Number(params.id);
-    const session = await auth()
-    const user = await getUserByEmail({ email: session?.user?.email!})
 
+    const session = await auth()
+    const user = await getUserByID({ id: session?.user?.id!})
+    const reviews = await fetchReviewsByTitleID({ titleId: id})
     // const title = await getTitle({id})
+
     const title: FullTitle = fakeFullTitle
 
-    const reviews = await fetchReviewsById({ titleId: id})
+    
         return (
             <main className="w-full flex flex-col py-12 gap-8">
                 <header>

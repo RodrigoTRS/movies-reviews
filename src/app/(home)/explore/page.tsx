@@ -45,12 +45,12 @@ export default async function Explore({ searchParams }: ExplorePageParams) {
             <main className="flex flex-col gap-12">
 
                 <section className="flex flex-col gap-2">
-                    <h2 className="text-muted-foreground">Genres</h2>
+                <h2 className="text-lg font-bold">Genres</h2>
                     <GenresSelector genres={genres} filteredGenre={filteredGenre} />
                 </section>
 
                 <section className="flex flex-col gap-2">
-                    <h2 className="text-muted-foreground">Titles</h2>
+                <h2 className="text-lg font-bold">Titles</h2>
                     <TitlesGrid
                         titles={titles}
                     />

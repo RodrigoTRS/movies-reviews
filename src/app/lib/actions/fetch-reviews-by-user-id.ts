@@ -4,16 +4,16 @@ import { unstable_noStore as noStore } from 'next/cache';
 import { prisma } from "@/lib/prisma";
 
 
-interface FetchReviewsByTitleIDParams {
-    titleId: number
+interface FetchReviewsByUserIDParams {
+    userId: string
 }
 
-export async function fetchReviewsByTitleID({ titleId }: FetchReviewsByTitleIDParams) {
+export async function fetchReviewsByUserID({ userId }: FetchReviewsByUserIDParams) {
     noStore()
     try {
         const reviews = await prisma.review.findMany({
             where: {
-                title_id: titleId,
+                user_id: userId,
             }
         })
         return reviews

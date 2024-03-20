@@ -8,7 +8,7 @@ interface GetTitleRequestParams {
 }
 
 
-export async function getTitle({ id }: GetTitleRequestParams) {
+export async function getTitleByID({ id }: GetTitleRequestParams) {
     try {
         const response = await api.get<FullTitle>(`/title/${id}/details/`, {
             params: {
